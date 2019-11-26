@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.vracapps.splashscreen">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_vracapps"
+        android:roundIcon="@mipmap/ic_launcher_vracapps_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ShoppingListActivity.ShoppingListActivity"></activity>
+        <activity
+            android:name=".RecipeActivity.RecipeSearchList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecipeActivity.RecipeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecipeActivity.RecipeSearch"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalendarActivity.NotePreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalendarActivity.addNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalendarActivity.CalendarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapsActivity.MapsActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity
+            android:name=".ConnectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FruitsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

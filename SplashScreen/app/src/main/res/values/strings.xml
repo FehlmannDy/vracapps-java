@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Vracapps</string>
+    <string name="map_key" translatable="false">AIzaSyD-yIpKeHJfZAdeWXhn8CyTLn0ubOmCENk</string>
+
+    <string-array name="RecipeTime">
+        <item>Matin</item>
+        <item>Dix heure</item>
+        <item>Midi</item>
+        <item>Quarte heure</item>
+        <item>Soir</item>
+    </string-array>
+</resources>
