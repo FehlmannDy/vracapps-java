@@ -47,4 +47,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     //Capitalize string
     implementation 'org.apache.commons:commons-lang3:3.6'
+    //Expand layout
+    implementation 'com.github.iammert:ExpandableLayout:1.3'
 }

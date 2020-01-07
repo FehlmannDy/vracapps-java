@@ -14,7 +14,7 @@ import ch.vracapps.splashscreen.ShoppingListActivity.ShoppingListActivity;
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout ll_fruits;
-    private LinearLayout ll_connect;
+    private LinearLayout ll_about;
     private LinearLayout ll_maps;
     private LinearLayout ll_calendar;
     private LinearLayout ll_lists;
@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ll_connect = (LinearLayout) findViewById(R.id.ll_connect);
-        ll_connect.setOnClickListener(new LinearLayout.OnClickListener(){
+        ll_about = (LinearLayout) findViewById(R.id.ll_about);
+        ll_about.setOnClickListener(new LinearLayout.OnClickListener(){
 
             public void onClick (View v){
-                Intent intent = new Intent(v.getContext(),ConnectActivity.class);
+                Intent intent = new Intent(v.getContext(),AboutActivity.class);
                 startActivityForResult(intent,0);
             }
         });
