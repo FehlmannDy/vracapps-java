@@ -6,12 +6,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#EEE">
+        android:background="@drawable/background_transparent">
 
         <TextView
+            android:id="@+id/tv_child_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_child_name"/>
+            android:layout_centerVertical="true"
+            android:padding="16dp"
+            android:text="Qu'est-ce que Vracapps"/>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
