@@ -6,15 +6,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FruitsActivity extends AppCompatActivity {
 
     private LinearLayout ll_home;
+    private TextView tvMonth;
+
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM");
+    private String currentMonth = simpleDateFormat.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fruits);
+
+        tvMonth = findViewById(R.id.tvMonth);
+        tvMonth.setText(currentMonth);
 
         //Button home page
         ll_home = (LinearLayout) findViewById(R.id.ll_home);
