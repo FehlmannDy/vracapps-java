@@ -20,6 +20,7 @@ import java.util.Map;
 
 import ch.vracapps.splashscreen.model.Edeman_Classes.Ingredient;
 import ch.vracapps.splashscreen.model.Edeman_Classes.Recipe;
+import ch.vracapps.splashscreen.model.FruitsVegetables;
 import ch.vracapps.splashscreen.model.Shop;
 
 
@@ -404,5 +405,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("setShoppingList : ",sql);
             cursor.moveToNext();
         }
+    }
+
+    public ArrayList<FruitsVegetables> getFruitsVegatableList() {
+        ArrayList<FruitsVegetables> mFruitsVegetables = new ArrayList<>();
+
+        //TODO SQL request
+
+        return mFruitsVegetables;
     }
 }
