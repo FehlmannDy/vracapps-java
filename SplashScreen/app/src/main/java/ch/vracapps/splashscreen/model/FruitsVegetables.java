@@ -1,5 +1,6 @@
 package ch.vracapps.splashscreen.model;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,8 +14,9 @@ public class FruitsVegetables implements Parcelable {
     private double carbonhydrate;
     private double dietary_fiber;
     private double protein;
+    private static Bitmap image;
 
-    public FruitsVegetables(int id, String name, int energy_kcal, int energy_kJ, double lipid, double fatty_acid, double carbonhydrate, double dietary_fiber, double protein) {
+    public FruitsVegetables(int id, String name, int energy_kcal, int energy_kJ, double lipid, double fatty_acid, double carbonhydrate, double dietary_fiber, double protein, Bitmap image) {
         this.id = id;
         this.name = name;
         this.energy_kcal = energy_kcal;
@@ -24,9 +26,10 @@ public class FruitsVegetables implements Parcelable {
         this.carbonhydrate = carbonhydrate;
         this.dietary_fiber = dietary_fiber;
         this.protein = protein;
+        this.image = image;
     }
 
-    protected FruitsVegetables(Parcel in) {
+    protected FruitsVegetables(Parcel in, Bitmap image) {
         id = in.readInt();
         name = in.readString();
         energy_kcal = in.readInt();
@@ -36,12 +39,13 @@ public class FruitsVegetables implements Parcelable {
         carbonhydrate = in.readDouble();
         dietary_fiber = in.readDouble();
         protein = in.readDouble();
+        this.image = image;
     }
 
     public static final Creator<FruitsVegetables> CREATOR = new Creator<FruitsVegetables>() {
         @Override
         public FruitsVegetables createFromParcel(Parcel in) {
-            return new FruitsVegetables(in);
+            return new FruitsVegetables(in, image);
         }
 
         @Override

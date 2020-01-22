@@ -5,8 +5,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -407,11 +412,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<FruitsVegetables> getFruitsVegatableList() {
+    public ArrayList<FruitsVegetables> getFruitsVegatableList(String Months) {
         ArrayList<FruitsVegetables> mFruitsVegetables = new ArrayList<>();
 
         //TODO SQL request
 
+        openDatabase();
+
+        Cursor cursor = mDatabases.rawQuery("SELECT id_FruitsVegetables FROM tbl_FruitsVegetables_Months WHERE id_Months = \""+Months+"\"",null);
+        cursor.moveToFirst();
+
+        for (int i=0;i<cursor.getCount();i++){
+            Cursor cursor1 = mDatabases.rawQuery("SELECT * FROM tbl_FruitsVegetables WHERE id=\""+cursor.getInt(0)+"\"",null);
+            cursor1.moveToFirst();
+            for (int ix=0;ix<cursor1.getCount();ix++){
+
+                byte[] blob = cursor1.getBlob(9);
+                Bitmap image = BitmapFactory.decodeByteArray(blob,0,blob.length);
+
+                FruitsVegetables fruitsVegetables = new FruitsVegetables(
+                        cursor1.getInt(0),
+                        cursor1.getString(1),
+                        cursor1.getInt(2),
+                        cursor1.getInt(3),
+                        cursor1.getDouble(4),
+                        cursor1.getDouble(5),
+                        cursor1.getDouble(6),
+                        cursor1.getDouble(7),
+                        cursor1.getDouble(8),
+                        image);
+                mFruitsVegetables.add(fruitsVegetables);
+                cursor1.moveToNext();
+            }
+
+        }
         return mFruitsVegetables;
     }
 }

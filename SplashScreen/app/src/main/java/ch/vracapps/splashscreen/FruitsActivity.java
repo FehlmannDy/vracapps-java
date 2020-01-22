@@ -3,6 +3,7 @@ package ch.vracapps.splashscreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +22,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import ch.vracapps.splashscreen.database.DatabaseHelper;
 import ch.vracapps.splashscreen.model.FruitsVegetables;
@@ -33,7 +35,9 @@ public class FruitsActivity extends AppCompatActivity {
     private ArrayList<FruitsVegetables> mFruitsVegetables;
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM");
+    private SimpleDateFormat simpleDateFormatDataBase = new SimpleDateFormat("M");
     private String currentMonth = simpleDateFormat.format(new Date());
+    private String currentMonthDataBase = simpleDateFormatDataBase.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,7 @@ public class FruitsActivity extends AppCompatActivity {
             }
         }
         //Get Recipe List in db exist
-        return mDBHelper.getFruitsVegatableList();
+        return mDBHelper.getFruitsVegatableList(currentMonthDataBase);
     }
 
     private boolean copyDatabase(Context context){

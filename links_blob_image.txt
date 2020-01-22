@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=CW739mop1Nc
+
+https://abhiandroid.com/database/add-retrieve-image-sqlite-database-example-android-studio.html
+
+https://stackoverflow.com/questions/21734933/android-sqlite-read-blob
