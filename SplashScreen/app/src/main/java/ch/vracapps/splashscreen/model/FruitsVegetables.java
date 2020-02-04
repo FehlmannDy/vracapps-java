@@ -11,41 +11,65 @@ public class FruitsVegetables implements Parcelable {
     private int energy_kJ;
     private double lipid;
     private double fatty_acid;
+    private double glucides;
     private double carbonhydrate;
     private double dietary_fiber;
     private double protein;
-    private static Bitmap image;
+    private Bitmap image;
 
-    public FruitsVegetables(int id, String name, int energy_kcal, int energy_kJ, double lipid, double fatty_acid, double carbonhydrate, double dietary_fiber, double protein, Bitmap image) {
+
+    public FruitsVegetables(int id, String name, int energy_kcal, int energy_kJ, double lipid, double fatty_acid, double glucides, double carbonhydrate, double dietary_fiber, double protein, Bitmap image) {
         this.id = id;
         this.name = name;
         this.energy_kcal = energy_kcal;
         this.energy_kJ = energy_kJ;
         this.lipid = lipid;
         this.fatty_acid = fatty_acid;
+        this.glucides = glucides;
         this.carbonhydrate = carbonhydrate;
         this.dietary_fiber = dietary_fiber;
         this.protein = protein;
         this.image = image;
     }
 
-    protected FruitsVegetables(Parcel in, Bitmap image) {
+    protected FruitsVegetables(Parcel in) {
         id = in.readInt();
         name = in.readString();
         energy_kcal = in.readInt();
         energy_kJ = in.readInt();
         lipid = in.readDouble();
         fatty_acid = in.readDouble();
+        glucides = in.readDouble();
         carbonhydrate = in.readDouble();
         dietary_fiber = in.readDouble();
         protein = in.readDouble();
-        this.image = image;
+        image = (Bitmap) in.readValue(Bitmap.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeInt(energy_kcal);
+        dest.writeInt(energy_kJ);
+        dest.writeDouble(lipid);
+        dest.writeDouble(fatty_acid);
+        dest.writeDouble(glucides);
+        dest.writeDouble(carbonhydrate);
+        dest.writeDouble(dietary_fiber);
+        dest.writeDouble(protein);
+        dest.writeValue(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<FruitsVegetables> CREATOR = new Creator<FruitsVegetables>() {
         @Override
         public FruitsVegetables createFromParcel(Parcel in) {
-            return new FruitsVegetables(in, image);
+            return new FruitsVegetables(in);
         }
 
         @Override
@@ -53,21 +77,6 @@ public class FruitsVegetables implements Parcelable {
             return new FruitsVegetables[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "FruitsVegetables{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", energy_kcal=" + energy_kcal +
-                ", energy_kJ=" + energy_kJ +
-                ", lipid=" + lipid +
-                ", fatty_acid=" + fatty_acid +
-                ", carbonhydrate=" + carbonhydrate +
-                ", dietary_fiber=" + dietary_fiber +
-                ", protein=" + protein +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -117,6 +126,14 @@ public class FruitsVegetables implements Parcelable {
         this.fatty_acid = fatty_acid;
     }
 
+    public double getGlucides() {
+        return glucides;
+    }
+
+    public void setGlucides(double glucides) {
+        this.glucides = glucides;
+    }
+
     public double getCarbonhydrate() {
         return carbonhydrate;
     }
@@ -141,21 +158,11 @@ public class FruitsVegetables implements Parcelable {
         this.protein = protein;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public Bitmap getImage() {
+        return image;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeInt(energy_kcal);
-        dest.writeInt(energy_kJ);
-        dest.writeDouble(lipid);
-        dest.writeDouble(fatty_acid);
-        dest.writeDouble(carbonhydrate);
-        dest.writeDouble(dietary_fiber);
-        dest.writeDouble(protein);
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 }

@@ -415,8 +415,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<FruitsVegetables> getFruitsVegatableList(String Months) {
         ArrayList<FruitsVegetables> mFruitsVegetables = new ArrayList<>();
 
-        //TODO SQL request
-
         openDatabase();
 
         Cursor cursor = mDatabases.rawQuery("SELECT id_FruitsVegetables FROM tbl_FruitsVegetables_Months WHERE id_Months = \""+Months+"\"",null);
@@ -427,7 +425,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor1.moveToFirst();
             for (int ix=0;ix<cursor1.getCount();ix++){
 
-                byte[] blob = cursor1.getBlob(9);
+                byte[] blob = cursor1.getBlob(10);
                 Bitmap image = BitmapFactory.decodeByteArray(blob,0,blob.length);
 
                 FruitsVegetables fruitsVegetables = new FruitsVegetables(
@@ -440,6 +438,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor1.getDouble(6),
                         cursor1.getDouble(7),
                         cursor1.getDouble(8),
+                        cursor1.getDouble(9),
                         image);
                 mFruitsVegetables.add(fruitsVegetables);
                 cursor1.moveToNext();

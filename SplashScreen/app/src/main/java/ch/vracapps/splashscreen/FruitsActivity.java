@@ -47,15 +47,17 @@ public class FruitsActivity extends AppCompatActivity {
         tvMonth = findViewById(R.id.tvMonth);
         tvMonth.setText(currentMonth);
 
+        mFruitsVegetables = initDatabaseIngredient();
         //Button home page
         ll_home = (LinearLayout) findViewById(R.id.ll_home);
         ll_home.setOnClickListener(new LinearLayout.OnClickListener(){
-
             public void onClick (View v){
                 Intent intent = new Intent(v.getContext(),MainActivity.class);
                 startActivityForResult(intent,0);
             }
         });
+
+
     }
 
     private ArrayList<FruitsVegetables> initDatabaseIngredient(){
