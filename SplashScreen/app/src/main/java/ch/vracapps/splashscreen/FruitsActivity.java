@@ -9,10 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.File;
@@ -33,6 +36,7 @@ public class FruitsActivity extends AppCompatActivity {
     private TextView tvMonth;
     private DatabaseHelper mDBHelper;
     private ArrayList<FruitsVegetables> mFruitsVegetables;
+    private GridView gridView;
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM");
     private SimpleDateFormat simpleDateFormatDataBase = new SimpleDateFormat("M");
@@ -47,13 +51,33 @@ public class FruitsActivity extends AppCompatActivity {
         tvMonth = findViewById(R.id.tvMonth);
         tvMonth.setText(currentMonth);
 
-        mFruitsVegetables = initDatabaseIngredient();
+
+
         //Button home page
         ll_home = (LinearLayout) findViewById(R.id.ll_home);
         ll_home.setOnClickListener(new LinearLayout.OnClickListener(){
             public void onClick (View v){
                 Intent intent = new Intent(v.getContext(),MainActivity.class);
                 startActivityForResult(intent,0);
+            }
+        });
+
+
+        mFruitsVegetables = initDatabaseIngredient();
+        gridView=findViewById(R.id.gvFruitsVegetables);
+
+        //Init gridlayout
+        CustomAdapter customAdapter = new CustomAdapter();
+        gridView.setAdapter(customAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),mFruitsVegetables.get(i).getName(),Toast.LENGTH_LONG).show();
+                //Do something
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+
             }
         });
 
@@ -120,11 +144,14 @@ public class FruitsActivity extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
             View viewFruitsRowData = getLayoutInflater().inflate(R.layout.activity_fruits_row_data,null);
             //getting view in row_data
-            TextView tvIngredienrName = viewFruitsRowData.findViewById(R.id.nameFruitsVegetable);
+            TextView tvFruitsVegetableName = viewFruitsRowData.findViewById(R.id.nameFruitsVegetable);
             ImageView ivFruitsVegatable = viewFruitsRowData.findViewById(R.id.ivFruitsVegetables);
 
 
+
             //set tv and iv
+            tvFruitsVegetableName.setText((mFruitsVegetables.get(i).getName()));
+            ivFruitsVegatable.setImageBitmap(mFruitsVegetables.get(i).getImage());
 
             return viewFruitsRowData;
         }

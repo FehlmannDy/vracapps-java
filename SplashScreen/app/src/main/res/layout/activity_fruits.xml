@@ -34,15 +34,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <GridView
+        android:id="@+id/gvFruitsVegetables"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coming Soon"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        android:horizontalSpacing="1dp"
+        android:numColumns="1"
+        android:verticalSpacing="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMonth">
+
+    </GridView>
 
 
 </android.support.constraint.ConstraintLayout>
